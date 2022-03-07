@@ -23,15 +23,32 @@ class App extends Component {
 
   render() {
     return (
-      <h4 className={this.getClassName(this.state.count)}>
-        <button
-          className="btn btn-info m-2"
-          onClick={this.handleClick}
-        >
-          Click Me  
-        </button>
-        Number of things: {this.isEven(this.state.count)}
-      </h4>
+      <table className="table table-striped table-bordered table-sm">
+        <thead className="bg-info text-white">
+          <tr><th>Value</th><th>Even?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+          <td>{ this.state.count }</td>
+          <td>{ this.isEven(this.state.count) } </td>
+          </tr>
+        </tbody>
+        <tfoot className="text-center">
+          <tr>
+            <td colSpan="2">
+              <button 
+                className="btn btn-info m-2"
+                onClick={ this.handleClick }>
+                Click Me
+              </button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+
+
+      
     );
   }
 }
