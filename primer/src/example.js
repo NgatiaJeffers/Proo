@@ -124,4 +124,29 @@ console.log("---");
 
 newArray.forEach((value, index) => console.log(`Index ${index}: ${value}`));
 
+// Using the Spread Operator
+function items(numValue, stringValue, boolValue) {
+    console.log(`Number: ${numValue}`);
+    console.log(`String: ${stringValue}`);
+    console.log(`Boolean: ${boolValue}`);
+}
+
+let myOtherArray = [1, "Adam", true];
+items(...myOtherArray);
+
+// Processing an Array
+let products = [
+    { name: "iPhone", price: 699.99, stock: 10 },
+    { name: "Kindle", price: 299.99, stock: 5 },
+    { name: "Nexus", price: 299.99, stock: 3 },
+    { name: "iPad", price: 499.99, stock: 2 },
+    { name: "MacBook", price: 999.99, stock: 0 },
+];
+
+let totalValue = products
+    .filter(item => item.stock > 0)
+    .reduce((prev, item) => prev + (item.price * item.stock), 0);
+
+console.log(`Total value of inventory: $${totalValue.toFixed(2)}`);
+
 
