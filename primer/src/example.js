@@ -149,4 +149,32 @@ let totalValue = products
 
 console.log(`Total value of inventory: $${totalValue.toFixed(2)}`);
 
+// Working with Objects
+let myData = new Object();
+myData.name = "Adam";
+myData.age = 30;
 
+console.log(`Name: ${myData.name}`);
+console.log(`Age: ${myData.age}`);
+
+let data = {
+    name: "Adam",
+    age: 30,
+    hobbies: ["Sports", "Cooking"]
+};
+
+console.log(`Name: ${data.name}`);
+console.log(`Age: ${data.age}`);
+console.log(`Hobbies: ${data.hobbies}`);
+
+// Using Functions as Methods
+let myObject = {
+    name: "John",
+    age: 30,
+    print: () => {
+        console.log(`Name: ${myObject.name}`);
+        console.log(`Age: ${myObject.age}`);
+    }
+};
+
+myObject.print();
