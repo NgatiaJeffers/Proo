@@ -44,3 +44,57 @@ function printName(nameFunction, printFunction) {
 
 printName(function () { return "Adam"; }, console.log);
 
+
+// Using Arrow Functions
+const letters = (n, m) => n + m;
+
+// Using varibles and Types
+function messageFunction(name, weather) {
+    let message = 'Hello, Kyle';
+    if (weather === "Sunny") {
+        let message = "It is a nice day";
+        console.log(message);
+    } else {
+        let message = "It is " + weather + " today";
+        console.log(message);
+    }
+    console.log(message);
+}
+
+messageFunction("Jeff", "raining");
+
+// Using Variables Closures
+function variableFunc(name) {
+    let myLocalvar = "Sunny";
+    let innerFunc = function () {
+        return ("Hello " + name + ", the weather is " + myLocalvar);
+    }
+    return innerFunc;
+}
+
+console.log(variableFunc("Adam")());
+
+// Using Conditional Statements
+let word = "Jeff";
+
+if (word === "Jeff") {
+    console.log("Name is Jeff");
+} else if (word === "Adam") {
+    console.log("Name is not Adam");
+} else {
+    console.log("Name is not Jeff or Adam");
+}
+
+switch (word) {
+    case "Jeff":
+        console.log("Name is Jeff");
+        break;
+    case "Adam":
+        console.log("Name is not Adam");
+        break;
+    default:
+        console.log("Name is not Jeff or Adam");
+        break;
+}
+
+
