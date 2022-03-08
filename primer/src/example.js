@@ -97,4 +97,31 @@ switch (word) {
         break;
 }
 
+// The Equality Operator vs The Identity Operator
+let firstVal = 5;
+let secondVal = "5";
+
+if (firstVal === secondVal) {
+    console.log("They are equal");
+} else {
+    console.log("They are not equal");
+}
+
+// Working with Arrays
+let myArray = new Array();
+myArray[0] = "Adam";
+myArray[1] = "Jeff";
+myArray[2] = "Kyle";
+myArray[3] = 100;
+
+// Using an Array Literal
+let newArray = ["Adam", "Jeff", "Kyle", 100];
+
+for (let i = 0; i < newArray.length; i++) {
+    console.log(`Index ${i}: ${newArray[i]}`); 
+}
+console.log("---");
+
+newArray.forEach((value, index) => console.log(`Index ${index}: ${value}`));
+
 
