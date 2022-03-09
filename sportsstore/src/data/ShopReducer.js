@@ -11,3 +11,6 @@ export const ShopReducer = (storeData, action) => {
             return storeData || {};
     }
 }
+
+// REducers are required to create and return new objects that 
+// incorporate any required changes
