@@ -178,3 +178,46 @@ let myObject = {
 };
 
 myObject.print();
+
+
+/* USING CLASSES */
+class AdamsData {
+    constructor() {
+        this.name = "Kylie";
+        this.age = 25;
+    }
+
+    print = () => {
+        console.log(`Name: ${this.name}`);
+        console.log(`Age: ${this.age}`);
+    }
+}
+
+let adamData = new AdamsData();
+adamData.print();
+
+// Destructuring
+let secondObject = {...adamData, age: 26};
+console.log(`Name: ${secondObject.name}`);
+
+// Capturing Parameter Names from Objects
+const glass = {
+    name: "Bob",
+    location: {
+        city: "New York",
+        state: "NY"
+    },
+    employment: {
+        company: "Google",
+        position: "Software Engineer"
+    }
+}
+
+function printDetails(data) {
+    console.log(`Name: ${data.name}`);
+    console.log(`Location: ${data.location.city}, ${data.location.state}`);
+    console.log(`Employment: ${data.employment.company}, ${data.employment.position}`);
+}
+
+printDetails(glass);
+
