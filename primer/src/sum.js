@@ -1,5 +1,5 @@
 // Understanding Javascript Module Patterns
 // Creating and Using a Javascript modules
-export default function (values) {
+export function sumValues (values) {
     return values.reduce((total, val) => total + val, 0);
 }
