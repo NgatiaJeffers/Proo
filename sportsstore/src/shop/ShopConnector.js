@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {  BrowserRouter as Routes, Router, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loadData } from "../data/ActionCreators";
 import { DataTypes } from "../data/Types";
@@ -21,23 +21,20 @@ const filterProducts = (products = [], category) =>
 export const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(
     class extends Component {
         componentDidMount () {
-            this.props.loadData(DataTypes.PRODUCTS);
             this.props.loadData(DataTypes.CATEGORIES);
+            this.props.loadData(DataTypes.PRODUCTS);
         }
 
         render () {
             return (
                 <Routes>
-                    <Router>
-                        <Route path="/shop/products/:category?" render={(routerProps) => 
-                            <Shop {...this.props} {...routerProps}
+                    <Route path="/shop/products/:category?" 
+                        render={(routeProps) => 
+                            <Shop {...this.props} {...routeProps}
                                 products={filterProducts(this.props.products,
-                                routerProps.match.params.category)}/>}
-                        />
-                    </Router>
-                    <Navigate to="/shop/products" />
+                                routeProps.match.params.category)}/>}/>
+                    <Route element={<Navigate replace to="/shop/products" />} />
                 </Routes>
-                
             )
         }
     }

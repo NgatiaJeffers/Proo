@@ -1,11 +1,11 @@
 import { ActionTypes } from "./Types";
 import { data as phData } from "./placeholderData";
 
-export const loadData = (dataTypes) => ({
+export const loadData = (dataType) => ({
     type: ActionTypes.DATA_LOAD,
     payload: {
-        dataTypes: dataTypes,
-        data:phData[dataTypes]
+        dataType: dataType,
+        data:phData[dataType]
     }
 });
 

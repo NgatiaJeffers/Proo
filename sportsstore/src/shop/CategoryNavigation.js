@@ -19,6 +19,7 @@ class CategoryNavigation extends Component {
                     </Link>    
                 )}
             </React.Fragment>
+            
         )
     }   
 }
