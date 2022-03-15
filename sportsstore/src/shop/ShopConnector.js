@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { loadData } from "../data/ActionCreators";
 import { DataTypes } from "../data/Types";
@@ -27,14 +27,14 @@ export const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(
 
         render () {
             return (
-                <Routes>
-                    <Route path="/shop/products/:category?" 
-                        render={(routeProps) => 
-                            <Shop {...this.props} {...routeProps}
-                                products={filterProducts(this.props.products,
-                                routeProps.match.params.category)}/>}/>
-                    <Route element={<Navigate replace to="/shop/products" />} />
-                </Routes>
+                <Switch>
+                    <Route path="/shop/products/:category?"
+                        render={ (routeProps) =>
+                            <Shop { ...this.props } { ...routeProps }
+                                products={ filterProducts(this.props.products,
+                                routeProps.match.params.category) } />} />
+                    <Redirect to="/shop/products" />
+                </Switch>
             )
         }
     }
