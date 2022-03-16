@@ -4,7 +4,11 @@ export const DataTypes = {
 }
 
 export const ActionTypes = {
-    DATA_LOAD: "data_load"
+    DATA_LOAD: "data_load",
+    CART_ADD: "cart_add",
+    CART_UPDATE: "cart_update",
+    CART_REMOVE: "cart_remove",
+    CART_CLEAR: "cart_clear"
 }
 
 // There are two data types --PRODUCTS and CATEGORIES--and
