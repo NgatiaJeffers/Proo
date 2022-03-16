@@ -37,7 +37,7 @@ export const CartReducer = (storeData, action) => {
             return newStore;
         
         case ActionTypes.CART_CLEAR:
-            return { cart: [], cartItems: 0, cartTotal: 0 ...storeData };
+            return { cart: [], cartItems: 0, cartTotal: 0, ...storeData };
         
         default:
             return storeData || { cart: [], cartItems: 0, cartTotal: 0 };
