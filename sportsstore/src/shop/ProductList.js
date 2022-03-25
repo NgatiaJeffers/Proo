@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 
 class ProductList extends Component {
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         products: []
+    //     }
+    // }
+
     render() {
         if (this.props.products == null || this.props.products.lenght === 0) {
             return <h5 className="p-2">No Products</h5>
@@ -17,7 +24,8 @@ class ProductList extends Component {
                     </h4>
                     <div className="card-text bt-white p-1">
                         {p.description}
-                        <button className="btn btn-success btn-sm float-right"
+                        <button 
+                            className="btn btn-success btn-sm float-right"
                             onClick={() => this.props.addToCart(p)}
                         >
                             Add to cart

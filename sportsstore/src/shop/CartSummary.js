@@ -20,8 +20,9 @@ class CartSummary extends Component {
     }
 
     getLinkClasses = () => {
-        return this.props.cartItems === 0 ? "btn btn-primary disabled" : "btn btn-sm bg-dark text-white";
-    }
+        return `btn btn-sm bg-dark text-white
+        ${ this.props.cartItems === 0 ? "disabled": ""}`;
+        }
     render () {
         return (
             <div className="float-right">

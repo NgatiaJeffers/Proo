@@ -4,13 +4,19 @@ import ProductList from "./ProductList";
 import CartSummary from "./CartSummary";
 
 class Shop extends Component {
+
+    handleAddToCart = (product) => {
+        this.props.addToCart(product);
+        this.props.history.push("/shop/cart");
+    }
+
     render () {
         return (
             <div className="container">
                 <div className="row">
                     <div className="col bg-dark text-white">
                         <div className="navbar-brand">SPORTS STORE</div>
-                        <CartSummary/>
+                        <CartSummary {...this.props}/>
                     </div>
                 </div>
                 <div className="row">
@@ -22,7 +28,7 @@ class Shop extends Component {
                     </div>
                     <div className="col-9 p-2">
                         <ProductList 
-                            products={this.props.products}
+                            addToCart={this.handleAddToCart}
                         />
                     </div>
                 </div>
