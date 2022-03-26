@@ -32,20 +32,40 @@ class BookDashboard extends Component {
     }
 
     // Update a book
-    updateBook = (book) => {
-        const newBooks = this.state.books.map(b => {
-            if (book.id === newBooks.id) {
-                return Object.assign({}, book);
-            } else {
-                return b;
-            }
+    updateBook = (newBook) => {
+        fetch(`http://localhost:8000/api/books/${newBook.id}/`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newBook),
+        })
+        .then(response => response.json())
+        .then(newBook => {
+            const books = this.state.books.map(book => {
+                if (book.id === newBook.id) {
+                    return newBook;
+                }
+                return book;
+            });
+            this.setState({ books });
         });
-        this.setState({ books: newBooks });
     }
 
     // Delete a book
-    deleteBook = (id) => {
-        this.setState({ books: this.state.books.filter(b => b.id !== id) });
+    deleteBook = (bookId) => {
+        fetch(`http://localhost:8000/api/books/${bookId}/`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(() => {
+            const books = this.state.books.filter(book => book.id !== bookId);
+            this.setState({ books });
+        });
     }
 
 
@@ -60,7 +80,7 @@ class BookDashboard extends Component {
                         <BookList 
                             books={this.state.books} 
                             onDeleteBook={this.deleteBook} 
-                            onUpdateBookBook={this.updateBook} 
+                            onUpdateBook={this.updateBook} 
                         />
                     ) : (
                         <h2 className='text-center'>No books yet</h2>

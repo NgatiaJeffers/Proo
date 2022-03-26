@@ -24,7 +24,8 @@ class EditableBook extends Component {
 
     handleUpdate = (book) => {
         this.leaveEditableMode();
-        book.id === this.props.id ? this.props.onUpdateBookBook(book) : this.props.onCreate(book);
+		book.id = this.props.id;
+		this.props.onUpdateBook(book);
     }
 
     render() {
@@ -40,8 +41,8 @@ class EditableBook extends Component {
                             title={title}
                             author={author}
                             description={description}
-                            onCancle={this.leaveEditableMode}
-                            onUpdateBookBook={this.handleUpdate}
+                            onCancel={this.leaveEditableMode}
+                            onFormSubmit={this.handleUpdate}
                         />
                     ) : (
                         <Book

@@ -17,7 +17,7 @@ class ToogleBookForm extends Component {
         this.setState({ inCreateMode: false });
     }
 
-    handleCancleClick = () => {
+    handleCancelClick = () => {
         this.leaveCreateMode();
     }
 
@@ -35,7 +35,7 @@ class ToogleBookForm extends Component {
                     inCreateMode ? (
                         <div className='mb-3 p-4' style={{ boxShadow: '0 0 10px #ccc' }}>
                             <BookForm
-                                onCancle={this.handleCancleClick}
+                                onCancel={this.handleCancelClick}
                                 onFormSubmit={this.handleFormSubmit}
                             />
                         </div>

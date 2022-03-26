@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Book extends Component {
     render() {
-        const { id, title, author, description, onUpdateBookBook, onDeleteBookBook, onEdit } = this.props;
+        const { title, author, description, onDeleteBook, onEdit } = this.props;
         return (
             <div className='card'>
                 <div className='card-header d-flex justify-content-between'>
@@ -13,7 +13,7 @@ class Book extends Component {
                         <span onClick={onEdit} className='mr-2' style={{ cursor: 'pointer' }}>
                             <i className='fa fa-pencil-square-o'></i>
                         </span>
-                        <span onClick={onDeleteBookBook} style={{ cursor: 'pointer' }}>
+                        <span onClick={onDeleteBook} style={{ cursor: 'pointer' }}>
                             <i className='fa fa-trash'></i>
                         </span>
                     </div>
