@@ -65,8 +65,8 @@ class BookDashboard extends Component {
                 <h1 className='text-center'>Book Store</h1>
                 <BookList
                     books={this.state.books}
-                    onDelete={this.deleteBook}
-                    onUpdate={this.updateBook}
+                    onDeleteBook={this.deleteBook}
+                    onUpdateBookBook={this.updateBook}
                 />
                 <ToogleBookForm 
                     onCreate={this.createNewBook} 

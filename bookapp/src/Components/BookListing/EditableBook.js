@@ -19,12 +19,12 @@ class EditableBook extends Component {
     }
 
     handleDelete = () => {
-        this.props.onDelete(this.props.id);
+        this.props.onDeleteBook(this.props.id);
     }
 
     handleUpdate = (book) => {
         this.leaveEditableMode();
-        book.id === this.props.id ? this.props.onUpdate(book) : this.props.onCreate(book);
+        book.id === this.props.id ? this.props.onUpdateBookBook(book) : this.props.onCreate(book);
     }
 
     render() {
@@ -41,7 +41,7 @@ class EditableBook extends Component {
                             author={author}
                             description={description}
                             onCancle={this.leaveEditableMode}
-                            onUpdate={this.handleUpdate}
+                            onUpdateBookBook={this.handleUpdate}
                         />
                     ) : (
                         <Book
@@ -49,7 +49,7 @@ class EditableBook extends Component {
                             author={author}
                             description={description}
                             onEdit={this.enterEditableMode}
-                            onDelete={this.handleDelete}
+                            onDeleteBook={this.handleDelete}
                         />
                     )
                 }

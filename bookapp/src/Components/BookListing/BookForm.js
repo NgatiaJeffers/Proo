@@ -12,7 +12,7 @@ class BookForm extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this.props.onUpdate(this.state);
+        this.props.onFormSubmit(this.state);
     }
 
     handleTitleUpdate = (e) => {
@@ -23,14 +23,14 @@ class BookForm extends Component {
         this.setState({ author: e.target.value });
     }
 
-    handleDescriptionUpdate = (e) => {
+    handleDescriptionUpdateBook = (e) => {
         this.setState({ description: e.target.value });
     }
 
     render() {
         const buttonText = this.props.id ? 'Update' : 'Create';
         return (
-            <form onSubmit={this.handleFormSubmit}>
+            <form onFormSubmit={this.handleFormSubmit}>
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input
@@ -57,12 +57,12 @@ class BookForm extends Component {
                         className="form-control"
                         placeholder='Enter Description'
                         value={this.state.description}
-                        onChange={this.handleDescriptionUpdate}
+                        onChange={this.handleDescriptionUpdateBook}
                     />
                 </div>
                 <div className='form-group d-flex justify-content-between'>
                     <button type="submit" className="btn btn-primary">{buttonText}</button>
-                    <button type="button" className="btn btn-danger" onClick={this.props.onDeleteBook}>Delete</button>
+                    <button type="button" className="btn btn-danger" onClick={this.props.onDeleteBookBook}>Delete</button>
                 </div>
             </form>
         )

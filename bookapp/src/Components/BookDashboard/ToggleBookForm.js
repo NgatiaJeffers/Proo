@@ -21,7 +21,7 @@ class ToogleBookForm extends Component {
         this.leaveCreateMode();
     }
 
-    handleSubmit = (book) => {
+    handleFormSubmit = (book) => {
         this.leaveCreateMode();
         this.props.onCreate(book);
     }
@@ -36,7 +36,7 @@ class ToogleBookForm extends Component {
                         <div className='mb-3 p-4' style={{ boxShadow: '0 0 10px #ccc' }}>
                             <BookForm
                                 onCancle={this.handleCancleClick}
-                                onSubmit={this.handleSubmit}
+                                onFormSubmit={this.handleFormSubmit}
                             />
                         </div>
                         

@@ -3,7 +3,7 @@ import EditableBook from '../BookListing/EditableBook';
 
 class BookList extends Component {
     render() {
-        const { books, onUpdateBook, onDeleteBook } = this.props;
+        const { books, onUpdateBookBook, onDeleteBookBook } = this.props;
 
         return (
             <div className="book-list">
@@ -15,8 +15,8 @@ class BookList extends Component {
                             title={book.title}
                             author={book.author}
                             description={book.description}
-                            onUpdate={onUpdateBook}
-                            onDelete={onDeleteBook}
+                            onUpdateBookBook={onUpdateBookBook}
+                            onDeleteBookBook={onDeleteBookBook}
                         />
                     ))
                 }
