@@ -3,41 +3,32 @@ import BookList from './BookList';
 import ToogleBookForm from './ToggleBookForm';
 
 class BookDashboard extends Component {
-    state = {
-        books: [
-            {
-                id: 1,
-                title: "Harry Potter and the Sorcerer's Stone",
-                author: "J.K. Rowling",
-                description: `Harry Potter has no idea how famous he is.
-                            That's because he's being raised by his 
-                            miserable aunt and uncle who are terrified 
-                            Harry will learn that he's really a wizard, 
-                            just as his parents were. But everything 
-                            changes when Harry is summoned to attend 
-                            an infamous school for wizards, and he 
-                            begins to discover some clues about his 
-                            illustrious birthright. From the surprising 
-                            way he is greeted by a lovable giant, 
-                            to the unique curriculum and colorful 
-                            faculty at his unusual school, Harry finds 
-                            himself drawn deep inside a mystical world 
-                            he never knew existed and closer to his own 
-                            noble destiny.`,
-            },
-            {
-                id: 2,
-                title: "Harry Potter and the Chamber of Secrets",
-                author: "J.K. Rowling",
-                description: `It is Harry's second year at Hogwarts; not only`
-            }
-        ]
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: []
+        }
     }
+
+    componentDidMount() {
+        fetch('http://localhost:8000/api/books/')
+        .then(response => response.json())
+        .then(data => this.setState({ books: data }));
+    }
+
 
     // Creating a new book
     createNewBook = (book) => {
-        book.id = Math.floor(Math.random() * 100);
-        this.setState({ books: [...this.state.books, book] });
+        fetch('http://localhost:8000/api/books/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(book),
+        })
+        .then(response => response.json())
+        .then(data => this.setState({ books: [...this.state.books, data] }));
     }
 
     // Update a book
@@ -63,11 +54,18 @@ class BookDashboard extends Component {
       <main className='d-flex justify-content-center my-4'>
           <div className='col-5'>
                 <h1 className='text-center'>Book Store</h1>
-                <BookList
-                    books={this.state.books}
-                    onDeleteBook={this.deleteBook}
-                    onUpdateBookBook={this.updateBook}
-                />
+                <hr/>
+                {
+                    this.state.books.length > 0 ? (
+                        <BookList 
+                            books={this.state.books} 
+                            onDeleteBook={this.deleteBook} 
+                            onUpdateBookBook={this.updateBook} 
+                        />
+                    ) : (
+                        <h2 className='text-center'>No books yet</h2>
+                    )
+                }
                 <ToogleBookForm 
                     onCreate={this.createNewBook} 
                 />
