@@ -1,0 +1,34 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="row">
+            <div class="col-md-12">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="sidebar">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>My Blog</h2>
+                <p>This is my blog. I will write about my life and my life's journey.</p>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
