@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-12">
             <h1>{{ post.title }}</h1>
-            <p>Published {{ post.publish }} by {{ post.author }}</p>
-            <p>{{ post.body|linebreaks }}</p>
+            <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+            {{ post.body|linebreaks }}
         </div>
     </div>
 </div>
