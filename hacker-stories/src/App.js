@@ -43,21 +43,27 @@ const App = () => {
   );
 };
 
-const List = (props) => (
-  <ul>
-    {props.list.map((item) => (
-      <li key={item.objectID}>
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-      </li>
-    )
-    )}
-  </ul>
-)
+const List = ({list}) => {
+  // const filteredList = list.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  list.map(item => <Item key={item.objectsID} item={item}/>)
+  const Item = ({item}) => (
+    <div>
+      <span>
+        <a href={item.url}>{item.title}</a>
+      </span>
+      <span>
+        {item.author}
+      </span>
+      <span>
+        {item.num_comments}
+      </span>
+      <span>
+        {item.points}
+      </span>
+    </div>
+  )
+} 
+  
 
 
 
