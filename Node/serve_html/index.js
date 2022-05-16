@@ -1,51 +1,47 @@
 import * as http from 'http';
 import { StatusCodes } from 'http-status-codes';
 import fs from 'fs';
+import { get, post, handleRequest } from "./router.js";
 
 const port = process.env.PORT || 3000;
 
-const sendErrorResponse = (res, error) => {
-    res.writeHead(StatusCodes.NOT_FOUND, { 'Content-Type': 'text/html' });
-    res.write("<h1>Page Not Found</h1>");
-    res.end();
-}
+let plainTextContentType = {
+    'Content-Type': 'text/plain'
+};
 
-const app = http.createServer();
+let htmlContentType = {
+    'Content-Type': 'text/html'
+};
 
-app.on("request", (req, res) => {
-    let url = req.url;
-    if (url.indexOf(".html") !== -1) {
-        res.writeHead(StatusCodes.OK, { 'Content-Type': 'text/html' });
-        customReadFile(`./views/${url}`, res);
-    } else if (url.indexOf(".css") !== -1) {
-        res.writeHead(StatusCodes.OK, { 'Content-Type': 'text/css' });
-        customReadFile(`./public/css${url}`, res);
-    } else if (url.indexOf(".js") !== -1) {
-        res.writeHead(StatusCodes.OK, { 'Content-Type': 'text/javascript' });
-        customReadFile(`./public/js${url}`, res);
-    } else if (url.indexOf(".png") !== -1) {
-        res.writeHead(StatusCodes.OK, { 'Content-Type': 'image/png' });
-        customReadFile(`./public/images${url}`, res);
-    } else {
-        sendErrorResponse(res, "Page Not Found");
-    }
-}).listen(port);
+const customReadFile = (file, res) => {
+    fs.readFile(`./${file}`, (err, data) => {
+        if (err) {
+            console.log("Error reading the file...");
+        }
+        res.end(data);
+    });
+};
+
+get("/", (req, res) =>{
+    res.writeHead(StatusCodes.OK, plainTextContentType);
+    res.end('INDEX');
+});
+
+get("/index.html", (req, res)=> {
+    res.writeHead(StatusCodes.OK, htmlContentType);
+    customReadFile("views/index.html", res);
+});
+
+get("/sample.html", (req, res)=> {
+    res.writeHead(StatusCodes.OK, htmlContentType);
+    customReadFile("views/sample.html", res);
+});
+
+post("/", (req, res) => {
+    res.writeHead(StatusCodes.OK, plainTextContentType);
+    res.end('POSTED');
+});
+
+http.createServer(handleRequest).listen(port);
 
 console.log(`The server has started and is listening on port ${port}`);
-
-const customReadFile = (filePath, res) => {
-    if (fs.existsSync(filePath)) {
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                console.log(err);
-                sendErrorResponse(res, err);
-                return;
-            } else {
-                res.write(data);
-                res.end();
-            }
-        });
-    } else {
-        sendErrorResponse(res, "Page Not Found");
-    }
-}
