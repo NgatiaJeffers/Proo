@@ -6,7 +6,26 @@ const port = 3000;
 
 const app = http.createServer();
 
+const getJSONString = (obj) => {
+    return JSON.stringify(obj, null, 2);
+}
+
 app.on("request", (req, res) => {
+    let body = [];
+    req.on("data", (bodyData) => {
+        body.push(bodyData);
+    });
+    req.on("end", () => {
+        body = Buffer.concat(body).toString();
+        console.log(`Received an incoming request with body: ${body}`);
+    })
+
+    console.log(`Method: ${getJSONString(req.method)}`);
+    
+    console.log(`URL: ${getJSONString(req.url)}`);
+
+    console.log(`Headers: ${getJSONString(req.headers)}`);
+
     res.writeHead(StatusCodes.OK, {
         "Content-type": "text/html"
     });
