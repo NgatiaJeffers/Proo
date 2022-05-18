@@ -1,4 +1,4 @@
-export const contentTypes = {
+export default {
     html: {
         "Content-Type": "text/html"
     },
