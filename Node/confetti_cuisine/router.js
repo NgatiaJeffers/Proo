@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import { contentTypes } from "./contentTypes";
+import contentTypes from "./contentTypes";
 
 routes = {
     "GET": {},
