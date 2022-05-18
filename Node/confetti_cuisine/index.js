@@ -1,6 +1,6 @@
 import * as http from 'http';
 import {StatusCodes} from 'http-status-codes';
-import * as contentType from './contentTypes';
+import * as contentType from "./contentTypes.js";
 import {get, post, handleRequest} from './router';
 import { getFile } from './utils';
 

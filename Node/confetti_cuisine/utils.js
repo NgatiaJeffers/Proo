@@ -1,7 +1,7 @@
 "use strict";
 
 import { StatusCodes } from "http-status-codes";
-import contentType from "./contentTypes";
+import * as contentType from "./contentTypes.js";
 import fs from "fs";
 
 export function getFile (file, res) {

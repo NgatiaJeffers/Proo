@@ -1,17 +1,18 @@
 import { StatusCodes } from "http-status-codes";
 import contentTypes from "./contentTypes";
+import { getFile } from './utils';
 
-routes = {
+const routes = {
     "GET": {},
     "POST": {}
 };
 
-export function handle (req, res) {
+export function handleRequest (req, res) {
     try {
         routes(req.method)[req.url](req, res);
     } catch (e) {
         res.writeHead(StatusCodes.OK, contentTypes.html);
-        utils.getFile("views/error.html", res);
+        getFile("views/error.html", res);
     }
 };
 
