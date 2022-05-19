@@ -1,0 +1,15 @@
+{
+  "name": "first_express_project",
+  "version": "1.0.0",
+  "description": "First express project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jefferson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
