@@ -28,7 +28,7 @@ let courses = [
 
 // Add callback functions for specific routes
 export function showCourses(req, res) {
-    res.render("All courses", {
+    res.render("courses", {
         offeredCourses: courses
     });
 };

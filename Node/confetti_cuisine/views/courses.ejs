@@ -1,0 +1,22 @@
+<% offeredCourses.forEach(course => { %>
+<div class="card">
+    <div class="card-title">
+        <h2><%= course.name %></h2>
+    </div>
+    <div class="card-body">
+        <p><%= course.description %></p>
+    </div>
+    <div class="card-footer">
+        <span>
+            <% if (course.price === 0) { %>
+            FREE
+            <% } else { %>
+            <%= course.cost %>
+            <% } %>
+        </span> || 
+        <span>
+            <%= course.views %>
+        </span>
+    </div>
+</div>
+<% }) %>
