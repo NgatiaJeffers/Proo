@@ -1,6 +1,7 @@
 import * as http from 'http';
 import {StatusCodes} from 'http-status-codes';
 import express from 'express';
+import { showCourses, showSignUp, postedSignUp } from './controllers/homeController.js';
 
 // Instantiate the express application
 const app = express();
@@ -17,6 +18,9 @@ app.use(express.json()); // for parsing application/json
 app.get("/", (req, res) => {
     res.send("Welcome to the Confetti Cuisine!");
 });
+app.get("/courses", showCourses);
+app.get("/contact", showSignUp);
+app.post("/contact", postedSignUp);
 
 // Set the application up to listen on port 3000
 app.listen(app.get("port"), () => {
