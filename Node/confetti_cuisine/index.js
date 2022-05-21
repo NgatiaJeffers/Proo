@@ -3,6 +3,7 @@ import {StatusCodes} from 'http-status-codes';
 import express from 'express';
 import layoutes from 'express-ejs-layouts';
 import { showCourses, showSignUp, postedSignUp } from './controllers/homeController.js';
+import { internalServerError, pageNotFoundError } from './controllers/errorController.js';
 
 // Instantiate the express application
 const app = express();
@@ -25,6 +26,10 @@ app.get("/", (req, res) => {
 app.get("/courses", showCourses);
 app.get("/contact", showSignUp);
 app.post("/contact", postedSignUp);
+
+// Add error handlers as middleware functions
+app.use(pageNotFoundError);
+app.use(internalServerError);
 
 // Set the application up to listen on port 3000
 app.listen(app.get("port"), () => {

@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-export const pageNotFoundError= (req, res) => {
+export const pageNotFoundError = (req, res) => {
     let errorCode = StatusCodes.NOT_FOUND;
     res.status(errorCode);
     res.render("error");

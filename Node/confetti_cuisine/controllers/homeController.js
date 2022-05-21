@@ -34,9 +34,9 @@ export function showCourses(req, res) {
 };
 
 export function showSignUp(req, res) {
-    res.render("Sign up");
+    res.render("contact");
 }
 
 export function postedSignUp(req, res) {
-    res.render("Posted sign up");
+    res.render("thanks");
 }
