@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-subscribeSchema = new mongoose.Schema({
+const subscriberSchema = new mongoose.Schema({
     name: String,
     email: String,
     zipCode: Number
 });
 
-export default mongoose.model("Subscriber", subscribeSchema);
+export default mongoose.model("Subscriber", subscriberSchema);

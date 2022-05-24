@@ -1,7 +1,7 @@
 import express from 'express';
 import layouts from 'express-ejs-layouts';
-import mongodb from 'mongodb';
 import mongoose from 'mongoose';
+import getAllSubscribers from './controllers/subscribersController.js';
 
 mongoose.connect(
     'mongodb://localhost:27017/recipeMongoApp',
@@ -14,36 +14,6 @@ db.once("open", () => {
     console.log("Connected to MongoDB");
 })
 
-const subscriberSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    zipCode: Number
-});
-
-const Subscriber = mongoose.model("Subscriber", subscriberSchema);
-
-let subscriber1 = new Subscriber({
-    name: "John Doe",
-    email: "jon@email.com",
-    zipCode: 12345
-});
-
-subscriber1.save((error, savedDocument) => {
-    if (error) console.log(error);
-    console.log(savedDocument);
-});
-
-Subscriber.create({
-    name: "Jane Doe",
-    email: "jane@email.com",
-    zipCode: 12345
-},
-    (error, savedDocument) => {
-        if (error) console.log(error);
-        console.log(savedDocument);
-    }
-);
-
 // Instantiate the express application
 const app = express();
 
@@ -53,9 +23,12 @@ app.set("port", process.env.PORT || 3000);
 app.use(express.urlencoded({extended: false})); // for parsing application/x-www-form-urlencoded
 app.use(express.json());
 app.use(layouts);
+app.use(express.static("public")); // Enable static files
 
-// Enable static files
-app.use(express.static("public"));
+app.get("/subscribers", getAllSubscribers, (res, req, next) => {
+    console.log(req.data);
+    res.setEncoding(req.data)
+});
 
 // Application listening to port 3000
 app.listen(app.get("port"), () => {
