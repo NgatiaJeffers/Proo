@@ -1,0 +1,36 @@
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Register Today</h3>
+                    <p>Fill in the data below.</p>
+                    <form action="/subcribe" method="post" class="requires-validation">
+
+                        <div class="col-md-12">
+                           <input class="form-control" type="text" name="name" placeholder="Full Name" required>
+                           <div class="valid-feedback">Name field is valid!</div>
+                           <div class="invalid-feedback">Name field cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input class="form-control" type="text" name="email" placeholder="E-mail Address" required>
+                             <div class="valid-feedback">Email field is valid!</div>
+                             <div class="invalid-feedback">Email field cannot be blank!</div>
+                        </div>
+
+                       <div class="col-md-12">
+                          <input class="form-control" type="text" name="zipCode" placeholder="Zip Code" pattern="[0-9]{5}" required>
+                           <div class="valid-feedback">Zip Code field is valid!</div>
+                           <div class="invalid-feedback">Zip Code field cannot be blank!</div>
+                       </div>
+              
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
