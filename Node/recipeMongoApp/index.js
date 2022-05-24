@@ -1,21 +1,48 @@
 import express from 'express';
 import layouts from 'express-ejs-layouts';
 import mongodb from 'mongodb';
+import mongoose from 'mongoose';
 
-const { MongoClient } = mongodb;
+mongoose.connect(
+    'mongodb://localhost:27017/recipeMongoApp',
+    { useNewUrlParser: true }
+    );
 
-let dbURL = 'mongodb://localhost:27017/recipeMongoApp';
-let dbName = 'recipe_db';
+const db = mongoose.connection;
 
-// Set up Mongo to my task application.
-MongoClient.connect(dbURL, (error, client) => {
-    if (error) throw error;
-    let db = client.db(dbName);
-    db.collection("contacts").find().toArray((error, data) => {
-        if (error) throw error;
-        console.log(data);
-    })
+db.once("open", () => {
+    console.log("Connected to MongoDB");
 })
+
+const subscriberSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    zipCode: Number
+});
+
+const Subscriber = mongoose.model("Subscriber", subscriberSchema);
+
+let subscriber1 = new Subscriber({
+    name: "John Doe",
+    email: "jon@email.com",
+    zipCode: 12345
+});
+
+subscriber1.save((error, savedDocument) => {
+    if (error) console.log(error);
+    console.log(savedDocument);
+});
+
+Subscriber.create({
+    name: "Jane Doe",
+    email: "jane@email.com",
+    zipCode: 12345
+},
+    (error, savedDocument) => {
+        if (error) console.log(error);
+        console.log(savedDocument);
+    }
+);
 
 // Instantiate the express application
 const app = express();
