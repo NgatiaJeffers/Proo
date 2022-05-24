@@ -1,7 +1,7 @@
 import express from 'express';
 import layouts from 'express-ejs-layouts';
 import mongoose from 'mongoose';
-import getAllSubscribers from './controllers/subscribersController.js';
+import {getAllSubscribers} from './controllers/subscribersController.js';
 
 mongoose.connect(
     'mongodb://localhost:27017/recipeMongoApp',
@@ -25,9 +25,9 @@ app.use(express.json());
 app.use(layouts);
 app.use(express.static("public")); // Enable static files
 
-app.get("/subscribers", getAllSubscribers, (res, req, next) => {
+app.get("/subscribers", getAllSubscribers, (req, res, next) => {
     console.log(req.data);
-    res.setEncoding(req.data)
+    res.render("subscribers", {subscribers: req.data});
 });
 
 // Application listening to port 3000

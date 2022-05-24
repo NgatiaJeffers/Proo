@@ -1,9 +1,11 @@
-import Subscriber from "../models/subscriber";
+import Subscriber from "../models/subscriber.js";
 
-export async function getAllSubscribers(req, res, next) {
-    Subscriber.find({}, (err, subscribers) => {
-        if (err) return next(err);
-        res.json(subscribers);
-        next();
-    })
-}
+export const getAllSubscribers = (req, res, next) => {
+    console.log(`getAllSubscribers: ${req.params.id}`);
+    return Subscriber.find({}, (err, subscribers) => {
+            if (err) next(err);
+            // res.json(subscribers);
+            req.data = subscribers;
+            next();
+        });
+};
