@@ -1,9 +1,17 @@
-import * as http from 'http';
-import {StatusCodes} from 'http-status-codes';
 import express from 'express';
 import layoutes from 'express-ejs-layouts';
 import { showCourses, showSignUp, postedSignUp } from './controllers/homeController.js';
 import { internalServerError, pageNotFoundError } from './controllers/errorController.js';
+import { getAllSubscribers, getSubscriptionPage, saveSubscriber } from './controllers/subscribersController.js';
+import mongoose from 'mongoose';
+
+// Connect to the database
+mongoose.connect('mongodb://localhost/confetti_cuisine',
+    { 
+        useNewUrlParser: true, 
+        useUnifiedTopology: true 
+    }
+);
 
 // Instantiate the express application
 const app = express();
@@ -24,8 +32,12 @@ app.get("/", (req, res) => {
     res.send("Welcome to the Confetti Cuisine!");
 });
 app.get("/courses", showCourses);
-app.get("/contact", showSignUp);
-app.post("/contact", postedSignUp);
+// app.get("/contact", showSignUp);
+// app.post("/contact", postedSignUp);
+
+app.get("/subscribers", getAllSubscribers);
+app.get("/contact", getSubscriptionPage);
+app.post("/subscribe", saveSubscriber);
 
 // Add error handlers as middleware functions
 app.use(pageNotFoundError);

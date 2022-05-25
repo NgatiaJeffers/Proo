@@ -1,0 +1,42 @@
+
+<link rel="stylesheet" href="/css/table.css">
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-lg-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Confetti Cuisine</h4>
+                  <p class="card-description">
+                    Subscribers Data
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Zip Code</th>
+                          <th>Created On</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <% subscribers.forEach(s => { %>
+                            <tr>
+                                <td><%= s.name %></td>
+                                <td><%= s.email %></td>
+                                <td><%= s.zipCode %></td>
+                                <td><%= s.date %></td>
+                                <td><label class="badge badge-success">Subscribed</label></td>
+                            </tr>
+                            <% }); %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
