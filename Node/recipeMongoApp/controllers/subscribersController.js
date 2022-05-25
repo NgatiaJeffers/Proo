@@ -1,11 +1,20 @@
 import Subscriber from "../models/subscriber.js";
 
 export const getAllSubscribers = (req, res, next) => {
-    Subscriber.find({}, (err, subscribers) => {
-            if (err) next(err);
-            req.data = subscribers;
-            next();
+    Subscriber.find({})
+    .exec()
+    .then(subscribers => {
+        res.render("subscribers", {
+            subscribers: subscribers
         });
+    })
+    .catch((err) => {
+        console.log(err.message);
+        return [];
+    })
+    .then(() => {
+        console.log("Promise complete");
+    });
 };
 
 export const getSubscriptionPage = (req, res) => {
@@ -18,10 +27,11 @@ export const saveSubscriber = (req, res) => {
         email: req.body.email,
         zipCode: req.body.zipCode
     });
-    console.log(newSubscriber)
-    newSubscriber.save((err, result) => {
-        console.log(err)
-        if (err) res.send(err);
+    newSubscriber.save()
+    .then(() => {
         res.render("thanks");
-    });
+    })
+    .catch((err) => {
+        if (err) res.send(err)
+    })
 };
