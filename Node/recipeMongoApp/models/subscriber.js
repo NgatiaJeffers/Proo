@@ -15,7 +15,11 @@ const subscriberSchema = new mongoose.Schema({
         type: Number,
         min: [1000, "Zip code too short"],
         max: 99999
-    }
+    },
+    courses: [{
+        tpe: mongoose.Schema.Types.ObjectId,
+        ref: "Course"
+    }]
 });
 
 // Add an instance method to get the full name of the subscriber
