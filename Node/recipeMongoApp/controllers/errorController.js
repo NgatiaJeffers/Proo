@@ -8,7 +8,7 @@ export const logErrors = (err, req, res, next) => {
 export const pageNotFoundError = (req, res, next) => {
     let errorCode = StatusCodes.NOT_FOUND;
     res.status(errorCode);
-    res.render("error";)
+    res.render("error");
 };
 
 export const internalServerError = (err, req, res, next) => {
