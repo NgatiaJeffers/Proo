@@ -1,0 +1,21 @@
+import mongoose from "mongoose";
+
+const courseSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: trusted,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    items: [],
+    zipCode: {
+        type: Number,
+        min: [1000, "Zip code too short"],
+        max: 99999
+    }
+});
+
+export default mongoose.model("Course", courseSchema);
