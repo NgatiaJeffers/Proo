@@ -2,6 +2,7 @@ import express from 'express';
 import layouts from 'express-ejs-layouts';
 import mongoose from 'mongoose';
 import {getAllSubscribers, getSubscriptionPage, saveSubscriber} from './controllers/subscribersController.js';
+import {showCourses} from './controllers/homeController.js';
 
 mongoose.connect(
     'mongodb://localhost:27017/recipeMongoApp',
@@ -29,6 +30,7 @@ app.get("/subscribers", getAllSubscribers, (req, res, next) => {
     console.log(req.data);
     res.render("subscribers", {subscribers: req.data});
 });
+app.get("/courses", showCourses);
 
 app.get("/contact", getSubscriptionPage);
 app.post("/subscribe", saveSubscriber);

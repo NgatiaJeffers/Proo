@@ -1,0 +1,19 @@
+
+<div class="row courses d-flex justify-content-center">
+    <div class="col-md-6">
+        <img src="images/people.jpg" alt="">
+    </div>
+    <% offeredCourses.forEach(course => { %>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= course.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Topic: <%= course.topic %></h6>
+          <p class="card-text"><%= course.description %></p>
+          <a href="#" class="card-link">Cost $<%= course.cost %></a>
+          <a href="#" class="card-link">Views: <%= course.views %></a>
+        </div>
+    </div>
+    <% }); %>
+</div>
+
+  

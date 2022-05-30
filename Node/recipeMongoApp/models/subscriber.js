@@ -17,7 +17,7 @@ const subscriberSchema = new mongoose.Schema({
         max: 99999
     },
     courses: [{
-        tpe: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Course"
     }]
 });

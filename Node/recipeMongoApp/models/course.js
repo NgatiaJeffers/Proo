@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import subscriber from "./subscriber";
 
 const courseSchema = new mongoose.Schema({
     title: {
