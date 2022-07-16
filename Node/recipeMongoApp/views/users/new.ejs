@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-12 col-md-12">
+        <div class="data-form">
+            <form action="/users/create" method="post">
+                <h2 class="title-header">Create a new user: </h2>
+                <div class="row justofy-content-between text-left">
+                    <div class="col-md-6 flex-column d-flex">
+                        <div class="form-group float-left">
+                            <label for="First Name" class="firstName">First Name</label>
+                            <input type="text" name="first" id="inputFirstName">
+                        </div>
+                    </div>
+        
+                    <div class="col-md-6 flex-column d-flex">
+                        <div class="form-group float-left">
+                            <label for="Last Name" class="firstName">Last Name</label>
+                            <input type="text" name="last" id="inputLastName">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row justofy-content-between text-left">
+                    <div class="col-md-6 flex-column d-flex">
+                        <div class="form-group float-left">
+                            <label for="password" class="password">Password</label>
+                            <input type="password" name="password" id="inputPassword">
+                        </div>
+                    </div>
+        
+                    <div class="col-md-6 flex-column d-flex">
+                        <div class="form-group float-left">
+                            <label for="email" class="email">Email</label>
+                            <input type="email" name="email" id="inputEmail">
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row justofy-content-between text-left">
+                    <div class="col-md-12 flex-column d-flex">
+                        <div class="form-group float-left">
+                            <label for="zip code" class="zipcode">Zip Code</label>
+                            <input type="text" name="zipCode" id="inputZipCode" pattern="\d*" required>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row justofy-content-between text-left">
+                    <div class="col-md-6 flex-column d-flex">
+                        <div class="form-group float-left">
+                            <button class="btn btn-success" type="submit">Sign in</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

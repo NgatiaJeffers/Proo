@@ -2,6 +2,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: "Nunitio", sans-serif !important;
 }
 
 body {
@@ -248,4 +249,9 @@ a {
 .courses {
   margin-top: 10em;
   margin-bottom: 2em;
+}
+
+.users-table {
+  margin-top: 10em;
+  font-family: "Nunitio", sans-serif !important;
 }

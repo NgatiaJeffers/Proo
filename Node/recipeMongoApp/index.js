@@ -3,6 +3,7 @@ import layouts from 'express-ejs-layouts';
 import mongoose from 'mongoose';
 import {getAllSubscribers, getSubscriptionPage, saveSubscriber} from './controllers/subscribersController.js';
 import {showCourses} from './controllers/homeController.js';
+import {index, indexView, newUser, createUser, redirectView, showUser, showView} from './controllers/usersController.js';
 
 mongoose.connect(
     'mongodb://localhost:27017/recipeMongoApp',
@@ -17,23 +18,30 @@ db.once("open", () => {
 
 // Instantiate the express application
 const app = express();
+const router = express.Router();
 
+app.use("/", router);
 // set the port of our application
 app.set("view engine", "ejs");  // set up ejs for templating
 app.set("port", process.env.PORT || 3000);
-app.use(express.urlencoded({extended: false})); // for parsing application/x-www-form-urlencoded
-app.use(express.json());
-app.use(layouts);
-app.use(express.static("public")); // Enable static files
+router.use(express.urlencoded({extended: false})); // for parsing application/x-www-form-urlencoded
+router.use(express.json());
+router.use(layouts);
+router.use(express.static("public")); // Enable static files
 
-app.get("/subscribers", getAllSubscribers, (req, res, next) => {
+router.get("/users", index, indexView);
+router.get("/users/new", newUser);
+router.post("/users/create", createUser, redirectView);
+router.get("/users/:id", showUser, showView);
+
+router.get("/subscribers", getAllSubscribers, (req, res, next) => {
     console.log(req.data);
     res.render("subscribers", {subscribers: req.data});
 });
-app.get("/courses", showCourses);
+router.get("/courses", showCourses);
 
-app.get("/contact", getSubscriptionPage);
-app.post("/subscribe", saveSubscriber);
+router.get("/contact", getSubscriptionPage);
+router.post("/subscribe", saveSubscriber);
 
 // Application listening to port 3000
 app.listen(app.get("port"), () => {

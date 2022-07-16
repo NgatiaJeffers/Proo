@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
+import Subscriber from "./subscriber.js";
+
 const {Schema} = mongoose;
 
-userSchema = new Schema({
+const userSchema = new Schema({
     name: {
         first: {
             type: String,
@@ -27,16 +29,41 @@ userSchema = new Schema({
         type: String,
         required: true
     },
-    courses: [
+    courses: [ // Add a course property to connect users to courses
         {
             type: Schema.Types.ObjectId,
             ref: "Course"
         }
     ],
-    subscribedAccount: {
+    subscribedAccount: { // Add a subscriberAccount to connect user to subscribers
         type: Schema.Types.ObjectId,
         ref: "Subscriber"
     }
 }, {
-    timestamps: true
+    timestamps: true // Add a timestamp property to record createdAt and updatedAt dates.
 });
+
+userSchema.pre("save", function(next) {
+    let user = this;
+    if (user.subscribedAccount === undefined) {
+        Subscriber.findOne({
+            email: user.email
+        })
+        .then(subscriber => {
+            user.subscribedAccount = subscriber;
+            next();
+        })
+        .catch(err => {
+            console.log(`Error in connecting subscriber: ${err.message}`);
+            next(err);
+        });
+    } else {
+        next();
+    }
+});
+
+userSchema.virtual("fullName").get(function() {
+    return `${this.name.first} ${this.name.last}`;
+});
+
+export default mongoose.model("User", userSchema);
