@@ -36,3 +36,28 @@ console.log(newLength);
 // To add a new item to the start of the array, unShift()
 cities.unshift("Edinburgh");
 console.log(cities);
+
+// REMOVING ITEMS 😎
+// To remove the last item from the array pop()
+cities.pop();
+console.log(cities); // ['Edinburgh', 'Manchester', 'Liverpool', 'Cardiff', 'Brandford', 'Brighton']
+
+// The pop() method returns the item that was removed
+const removedCity = cities.pop();
+console.log(removedCity); // Brighton
+
+// To remove the first item from an array, shift():
+const removeFirstItem = cities.shift();
+console.log(removeFirstItem); // Edinburgh
+
+// If you know the index of an item, you can remove it from
+// the array using splice():
+const newCities = ["Manchester", "Liverpool", "London", "Edinburgh", "Carlisle"];
+const index = newCities.indexOf("Liverpool");
+console.log(index)
+if (index !== -1) {
+    // The first argument says where to start removing items
+    // The second argument says how many items should be removed.
+    newCities.splice(index, 3);
+}
+console.log(newCities)
