@@ -30,3 +30,23 @@ const isLong = (city) => {
 const cities = ["London", "Liverpool", "Totnes", "Edinburgh"];
 const longer = cities.filter(isLong); // If the func returns true, then item is added
 console.log(longer);                  // to a new array
+
+// 😎😎😎
+// CONVERTING BETWEEN STRINGS AND ARRAYS
+// split():
+const data = "Manchester, London, Liverpool, Birmingham, Leeds, Carlisle";
+
+const newData = data.split(",");
+console.log(newData);
+let dataLength = newData.length; // length of the array
+let firstItem = newData[0];
+let secondItem = newData[1];
+let lastItem = newData[newData.length - 1];
+console.log(dataLength); // 6
+console.log(firstItem); // Manchester
+console.log(secondItem); // London
+console.log(lastItem); // Carlisle
+
+// join():
+const commaSeparated = newData.join(",");
+console.log(commaSeparated);
